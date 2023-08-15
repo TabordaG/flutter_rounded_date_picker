@@ -270,17 +270,15 @@ class _FlutterRoundedDatePickerDialogState
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   // Flexible(flex: 1, child: header),
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: backgroundPicker,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(widget.borderRadius),
-                          bottomLeft: Radius.circular(widget.borderRadius),
-                          topRight: Radius.circular(widget.borderRadius),
-                          bottomRight: Radius.circular(widget.borderRadius),
-                        ),
+                  Container(
+                    width: 8,
+                    decoration: BoxDecoration(
+                      color: backgroundPicker,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(widget.borderRadius),
+                        bottomLeft: Radius.circular(widget.borderRadius),
+                        topRight: Radius.circular(widget.borderRadius),
+                        bottomRight: Radius.circular(widget.borderRadius),
                       ),
                     ),
                   ),
@@ -310,17 +308,15 @@ class _FlutterRoundedDatePickerDialogState
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   // header,
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: backgroundPicker,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(widget.borderRadius),
-                          bottomLeft: Radius.circular(widget.borderRadius),
-                          topRight: Radius.circular(widget.borderRadius),
-                          bottomRight: Radius.circular(widget.borderRadius),
-                        ),
+                  Container(
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: backgroundPicker,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(widget.borderRadius),
+                        bottomLeft: Radius.circular(widget.borderRadius),
+                        topRight: Radius.circular(widget.borderRadius),
+                        bottomRight: Radius.circular(widget.borderRadius),
                       ),
                     ),
                   ),
