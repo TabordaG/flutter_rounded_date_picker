@@ -278,6 +278,8 @@ class _FlutterRoundedDatePickerDialogState
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(widget.borderRadius),
                           bottomLeft: Radius.circular(widget.borderRadius),
+                          topRight: Radius.circular(widget.borderRadius),
+                          bottomRight: Radius.circular(widget.borderRadius),
                         ),
                       ),
                     ),
@@ -315,7 +317,9 @@ class _FlutterRoundedDatePickerDialogState
                         color: backgroundPicker,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(widget.borderRadius),
+                          bottomLeft: Radius.circular(widget.borderRadius),
                           topRight: Radius.circular(widget.borderRadius),
+                          bottomRight: Radius.circular(widget.borderRadius),
                         ),
                       ),
                     ),
