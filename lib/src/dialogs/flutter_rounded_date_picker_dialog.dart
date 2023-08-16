@@ -3,7 +3,6 @@ import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:flutter_rounded_date_picker/src/flutter_rounded_button_action.dart';
-import 'package:flutter_rounded_date_picker/src/widgets/flutter_rounded_date_picker_header.dart';
 import 'package:flutter_rounded_date_picker/src/widgets/flutter_rounded_day_picker.dart';
 import 'package:flutter_rounded_date_picker/src/widgets/flutter_rounded_month_picker.dart';
 import 'package:flutter_rounded_date_picker/src/widgets/flutter_rounded_year_picker.dart';
@@ -11,6 +10,9 @@ import 'package:flutter_rounded_date_picker/src/widgets/flutter_rounded_year_pic
 class FlutterRoundedDatePickerDialog extends StatefulWidget {
   const FlutterRoundedDatePickerDialog(
       {Key? key,
+      this.title = '',
+      this.titleTextStyle,
+      this.headerLine = const Color(0xffF3F3F3),
       this.height,
       required this.initialDate,
       required this.firstDate,
@@ -41,6 +43,13 @@ class FlutterRoundedDatePickerDialog extends StatefulWidget {
   final DateTime lastDate;
   final SelectableDayPredicate? selectableDayPredicate;
   final DatePickerMode initialDatePickerMode;
+
+  /// Custom title
+  final String? title;
+  final TextStyle? titleTextStyle;
+
+  /// Grey Line
+  final Color? headerLine;
 
   /// double height.
   final double? height;
@@ -129,23 +138,23 @@ class _FlutterRoundedDatePickerDialogState
     }
   }
 
-  void _handleModeChanged(DatePickerMode mode) {
-    _vibrate();
-    setState(() {
-      _mode = mode;
-      if (_mode == DatePickerMode.day) {
-        SemanticsService.announce(
-          localizations.formatMonthYear(_selectedDate),
-          textDirection,
-        );
-      } else {
-        SemanticsService.announce(
-          localizations.formatYear(_selectedDate),
-          textDirection,
-        );
-      }
-    });
-  }
+  // void _handleModeChanged(DatePickerMode mode) {
+  //   _vibrate();
+  //   setState(() {
+  //     _mode = mode;
+  //     if (_mode == DatePickerMode.day) {
+  //       SemanticsService.announce(
+  //         localizations.formatMonthYear(_selectedDate),
+  //         textDirection,
+  //       );
+  //     } else {
+  //       SemanticsService.announce(
+  //         localizations.formatYear(_selectedDate),
+  //         textDirection,
+  //       );
+  //     }
+  //   });
+  // }
 
   Future<void> _handleYearChanged(DateTime value) async {
     if (value.isBefore(widget.firstDate)) {
@@ -247,17 +256,17 @@ class _FlutterRoundedDatePickerDialogState
     final Dialog dialog = Dialog(
       child: OrientationBuilder(
           builder: (BuildContext context, Orientation orientation) {
-        final Widget header = FlutterRoundedDatePickerHeader(
-            selectedDate: _selectedDate,
-            mode: _mode,
-            onModeChanged: _handleModeChanged,
-            orientation: orientation,
-            era: widget.era,
-            borderRadius: widget.borderRadius,
-            imageHeader: widget.imageHeader,
-            description: widget.description,
-            fontFamily: widget.fontFamily,
-            style: widget.styleDatePicker);
+        // final Widget header = FlutterRoundedDatePickerHeader(
+        //     selectedDate: _selectedDate,
+        //     mode: _mode,
+        //     onModeChanged: _handleModeChanged,
+        //     orientation: orientation,
+        //     era: widget.era,
+        //     borderRadius: widget.borderRadius,
+        //     imageHeader: widget.imageHeader,
+        //     description: widget.description,
+        //     fontFamily: widget.fontFamily,
+        //     style: widget.styleDatePicker);
         switch (orientation) {
           case Orientation.landscape:
             return Container(
@@ -321,14 +330,39 @@ class _FlutterRoundedDatePickerDialogState
                 children: <Widget>[
                   // header,
                   Container(
-                    height: 10,
+                    height: 8,
                     decoration: BoxDecoration(
                       color: backgroundPicker,
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(widget.borderRadius),
+                        topLeft: Radius.circular(widget.borderRadius + 16),
                         bottomLeft: Radius.circular(widget.borderRadius),
-                        topRight: Radius.circular(widget.borderRadius),
+                        topRight: Radius.circular(widget.borderRadius + 16),
                         bottomRight: Radius.circular(widget.borderRadius),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: Center(
+                      child: Container(
+                        width: 48,
+                        height: 8,
+                        decoration: BoxDecoration(
+                          color: widget.headerLine,
+                          borderRadius: BorderRadius.circular(99),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: (widget.title ?? '').isNotEmpty,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: Center(
+                        child: Text(
+                          widget.title ?? '',
+                          style: widget.titleTextStyle,
+                        ),
                       ),
                     ),
                   ),
