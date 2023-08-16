@@ -319,62 +319,65 @@ class _FlutterRoundedDatePickerDialogState
             );
           case Orientation.portrait:
           default:
-            return Container(
-              decoration: BoxDecoration(
-                color: backgroundPicker,
-                borderRadius: BorderRadius.circular(widget.borderRadius),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  // header,
-                  Container(
-                    height: 8,
-                    decoration: BoxDecoration(
-                      color: backgroundPicker,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(widget.borderRadius + 16),
-                        bottomLeft: Radius.circular(widget.borderRadius),
-                        topRight: Radius.circular(widget.borderRadius + 16),
-                        bottomRight: Radius.circular(widget.borderRadius),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: Center(
-                      child: Container(
-                        width: 48,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: widget.headerLine,
-                          borderRadius: BorderRadius.circular(99),
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: backgroundPicker,
+                  borderRadius: BorderRadius.circular(widget.borderRadius),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    // header,
+                    Container(
+                      height: 16,
+                      decoration: BoxDecoration(
+                        color: backgroundPicker,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(widget.borderRadius + 16),
+                          bottomLeft: Radius.circular(widget.borderRadius),
+                          topRight: Radius.circular(widget.borderRadius + 16),
+                          bottomRight: Radius.circular(widget.borderRadius),
                         ),
                       ),
                     ),
-                  ),
-                  Visibility(
-                    visible: (widget.title ?? '').isNotEmpty,
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
                       child: Center(
-                        child: Text(
-                          widget.title ?? '',
-                          style: widget.titleTextStyle,
+                        child: Container(
+                          width: 48,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: widget.headerLine,
+                            borderRadius: BorderRadius.circular(99),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  if (widget.height == null)
-                    Flexible(child: picker)
-                  else
-                    SizedBox(
-                      height: widget.height,
-                      child: picker,
+                    Visibility(
+                      visible: (widget.title ?? '').isNotEmpty,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: Center(
+                          child: Text(
+                            widget.title ?? '',
+                            style: widget.titleTextStyle,
+                          ),
+                        ),
+                      ),
                     ),
-                  actions,
-                ],
+                    if (widget.height == null)
+                      Flexible(child: picker)
+                    else
+                      SizedBox(
+                        height: widget.height,
+                        child: picker,
+                      ),
+                    actions,
+                  ],
+                ),
               ),
             );
         }
