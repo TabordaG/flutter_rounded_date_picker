@@ -282,8 +282,8 @@ class _FlutterRoundedDatePickerDialogState
                       ),
                     ),
                   ),
-                  Flexible(
-                    flex: 2, // have the picker take up 2/3 of the dialog width
+                  Expanded(
+                    // flex: 2, // have the picker take up 2/3 of the dialog width
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -291,6 +291,18 @@ class _FlutterRoundedDatePickerDialogState
                         Flexible(child: picker),
                         actions,
                       ],
+                    ),
+                  ),
+                  Container(
+                    width: 8,
+                    decoration: BoxDecoration(
+                      color: backgroundPicker,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(widget.borderRadius),
+                        bottomLeft: Radius.circular(widget.borderRadius),
+                        topRight: Radius.circular(widget.borderRadius),
+                        bottomRight: Radius.circular(widget.borderRadius),
+                      ),
                     ),
                   ),
                 ],
