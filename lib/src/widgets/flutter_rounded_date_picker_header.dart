@@ -108,27 +108,53 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
         break;
     }
 
-    final Widget yearButton = IgnorePointer(
-      ignoring: mode != DatePickerMode.day,
-      ignoringSemantics: false,
-      child: _DateHeaderButton(
-        color: Colors.transparent,
+    final Widget yearButton = ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: InkWell(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         onTap: () {
           _handleChangeMode();
-          // Feedback.wrapForTap(
-          //   () => _handleChangeMode(DatePickerMode.year),
-          //   context,
-          // );
         },
-        child: Semantics(
-          selected: mode == DatePickerMode.year,
-          child: Text(
-            "${calculateYearEra(era, selectedDate.year)}",
-            style: yearStyle,
+        child: Card(
+          elevation: 4,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+              child: Text(
+                "${calculateYearEra(era, selectedDate.year)}",
+                style: yearStyle,
+              ),
+            ),
           ),
         ),
       ),
     );
+    // IgnorePointer(
+    //   ignoring: mode != DatePickerMode.day,
+    //   ignoringSemantics: false,
+    //   child: _DateHeaderButton(
+    //     color: Colors.transparent,
+    //     onTap: () {
+    //       _handleChangeMode();
+    //       // Feedback.wrapForTap(
+    //       //   () => _handleChangeMode(DatePickerMode.year),
+    //       //   context,
+    //       // );
+    //     },
+    //     child: Semantics(
+    //       selected: mode == DatePickerMode.year,
+    //       child: Text(
+    //         "${calculateYearEra(era, selectedDate.year)}",
+    //         style: yearStyle,
+    //       ),
+    //     ),
+    //   ),
+    // );
 
     final Widget dayButton = IgnorePointer(
       ignoring: mode == DatePickerMode.day,
@@ -169,29 +195,33 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
         borderRadius: borderRadiusData,
       ),
       padding: padding,
-      child: Column(
-        mainAxisAlignment: mainAxisAlignment,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          yearButton,
-          // dayButton,
-          // const SizedBox(height: 4.0),
-          // Visibility(
-          //   visible: description.isNotEmpty,
-          //   child: Padding(
-          //     padding: EdgeInsets.symmetric(horizontal: 12),
-          //     child: Text(
-          //       description,
-          //       style: TextStyle(
-          //         color: yearColor,
-          //         fontSize: 12,
-          //         fontFamily: fontFamily,
-          //       ),
-          //     ),
-          //   ),
-          // )
-        ],
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: yearButton,
       ),
+      // child: Column(
+      //   mainAxisAlignment: mainAxisAlignment,
+      //   crossAxisAlignment: CrossAxisAlignment.start,
+      //   children: <Widget>[
+      //     // yearButton,
+      //     // dayButton,
+      //     // const SizedBox(height: 4.0),
+      //     // Visibility(
+      //     //   visible: description.isNotEmpty,
+      //     //   child: Padding(
+      //     //     padding: EdgeInsets.symmetric(horizontal: 12),
+      //     //     child: Text(
+      //     //       description,
+      //     //       style: TextStyle(
+      //     //         color: yearColor,
+      //     //         fontSize: 12,
+      //     //         fontFamily: fontFamily,
+      //     //       ),
+      //     //     ),
+      //     //   ),
+      //     // )
+      //   ],
+      // ),
     );
   }
 }
