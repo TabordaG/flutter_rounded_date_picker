@@ -119,30 +119,20 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
           onTap: () {
             _handleChangeMode();
           },
-          child: Card(
-            elevation: 4,
-            child: Container(
-              color: backgroundColor,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.chevron_left_rounded,
-                      color: yearStyle.color,
-                    ),
-                    SizedBox(width: 2),
-                    Text(
-                      "Voltar",
-                      style: yearStyle,
-                    ),
-                  ],
-                ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.chevron_left_rounded,
+                color: yearStyle.color,
               ),
-            ),
+              SizedBox(width: 2),
+              Text(
+                "Voltar",
+                style: yearStyle,
+              ),
+            ],
           ),
         ),
       ),
