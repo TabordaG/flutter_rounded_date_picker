@@ -206,6 +206,8 @@ class _FlutterRoundedDatePickerDialogState
       default:
         return FlutterRoundedMonthPicker(
             key: _pickerKey,
+            mode: _mode,
+            onModeChanged: _handleModeChanged,
             selectedDate: _selectedDate,
             onChanged: _handleDayChanged,
             firstDate: widget.firstDate,
@@ -357,18 +359,18 @@ class _FlutterRoundedDatePickerDialogState
                       ),
                     ),
                     header,
-                    Visibility(
-                      visible: (widget.title ?? '').isNotEmpty,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 10.0),
-                        child: Center(
-                          child: Text(
-                            widget.title ?? '',
-                            style: widget.titleTextStyle,
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Visibility(
+                    //   visible: (widget.title ?? '').isNotEmpty,
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.only(bottom: 10.0),
+                    //     child: Center(
+                    //       child: Text(
+                    //         widget.title ?? '',
+                    //         style: widget.titleTextStyle,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     if (widget.height == null)
                       Flexible(child: picker)
                     else

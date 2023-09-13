@@ -67,6 +67,8 @@ class FlutterRoundedDayPicker extends StatelessWidget {
       required this.firstDate,
       required this.lastDate,
       required this.displayedMonth,
+      required this.mode,
+      required this.onModeChanged,
       this.selectableDayPredicate,
       this.dragStartBehavior = DragStartBehavior.start,
       required this.era,
@@ -81,6 +83,9 @@ class FlutterRoundedDayPicker extends StatelessWidget {
       : assert(!firstDate.isAfter(lastDate)),
 //        assert(selectedDate.isAfter(firstDate) || selectedDate.isAtSameMomentAs(firstDate)),
         super(key: key);
+
+  final DatePickerMode mode;
+  final ValueChanged<DatePickerMode> onModeChanged;
 
   /// The currently selected date.
   ///
@@ -261,6 +266,11 @@ class FlutterRoundedDayPicker extends StatelessWidget {
     return (weekdayFromMonday - firstDayOfWeekFromMonday) % 7;
   }
 
+  void _handleChangeMode() {
+    onModeChanged(
+        mode == DatePickerMode.day ? DatePickerMode.year : DatePickerMode.day);
+  }
+
   @override
   Widget build(BuildContext context) {
     Orientation orientation = MediaQuery.of(context).orientation;
@@ -433,12 +443,19 @@ class FlutterRoundedDayPicker extends StatelessWidget {
 //            height: _kDayPickerRowHeight,
             child: Center(
               child: ExcludeSemantics(
-                child: Text(
-                  monthYearHeader,
-                  style: style?.textStyleMonthYearHeader ??
-                      themeData.textTheme.titleMedium!.copyWith(
-                        fontFamily: fontFamily,
-                      ),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () {
+                    _handleChangeMode();
+                  },
+                  child: Text(
+                    monthYearHeader,
+                    style: style?.textStyleMonthYearHeader ??
+                        themeData.textTheme.titleMedium!.copyWith(
+                          fontFamily: fontFamily,
+                        ),
+                  ),
                 ),
               ),
             ),

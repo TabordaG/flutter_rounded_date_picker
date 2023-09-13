@@ -125,10 +125,11 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
               child: AnimatedCrossFade(
                 duration: const Duration(milliseconds: 200),
-                firstChild: Text(
-                  "${calculateYearEra(era, selectedDate.year)}",
-                  style: yearStyle,
-                ),
+                firstChild: SizedBox.shrink(),
+                // firstChild: Text(
+                //   "${calculateYearEra(era, selectedDate.year)}",
+                //   style: yearStyle,
+                // ),
                 secondChild: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -215,7 +216,7 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
       ),
       padding: padding,
       child: Align(
-        alignment: Alignment.centerRight,
+        alignment: Alignment.centerLeft,
         child: yearButton,
       ),
       // child: Column(

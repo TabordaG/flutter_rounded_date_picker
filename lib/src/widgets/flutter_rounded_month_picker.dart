@@ -36,6 +36,8 @@ class FlutterRoundedMonthPicker extends StatefulWidget {
       required this.onChanged,
       required this.firstDate,
       required this.lastDate,
+      required this.mode,
+      required this.onModeChanged,
       this.selectableDayPredicate,
       this.dragStartBehavior = DragStartBehavior.start,
       required this.era,
@@ -51,6 +53,9 @@ class FlutterRoundedMonthPicker extends StatefulWidget {
       : assert(!firstDate.isAfter(lastDate)),
 //        assert(selectedDate.isAfter(firstDate) || selectedDate.isAtSameMomentAs(firstDate)),
         super(key: key);
+
+  final DatePickerMode mode;
+  final ValueChanged<DatePickerMode> onModeChanged;
 
   /// The currently selected date.
   ///
@@ -188,6 +193,8 @@ class _FlutterRoundedMonthPickerState extends State<FlutterRoundedMonthPicker>
     final DateTime month = _addMonthsToMonthDate(widget.firstDate, index);
     return FlutterRoundedDayPicker(
       key: ValueKey<DateTime>(month),
+      mode: widget.mode,
+      onModeChanged: widget.onModeChanged,
       selectedDate: widget.selectedDate,
       currentDate: _todayDate,
       onChanged: widget.onChanged,
