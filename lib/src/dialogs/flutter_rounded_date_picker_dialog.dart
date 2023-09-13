@@ -375,7 +375,9 @@ class _FlutterRoundedDatePickerDialogState
                       Flexible(child: picker)
                     else
                       SizedBox(
-                        height: widget.height,
+                        height: _mode == DatePickerMode.day
+                            ? widget.height
+                            : (widget.height ?? 0.0) + 60.0,
                         child: picker,
                       ),
                     Visibility(
