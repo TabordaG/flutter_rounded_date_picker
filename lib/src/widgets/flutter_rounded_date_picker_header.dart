@@ -119,16 +119,34 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
         child: Card(
           elevation: 4,
           child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: backgroundColor,
-            ),
+            color: backgroundColor,
             child: Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-              child: Text(
-                "${calculateYearEra(era, selectedDate.year)}",
-                style: yearStyle,
+              child: AnimatedCrossFade(
+                duration: const Duration(milliseconds: 200),
+                firstChild: Text(
+                  "${calculateYearEra(era, selectedDate.year)}",
+                  style: yearStyle,
+                ),
+                secondChild: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.chevron_left_rounded,
+                      color: yearStyle.color,
+                    ),
+                    SizedBox(width: 2),
+                    Text(
+                      "Voltar",
+                      style: yearStyle,
+                    ),
+                  ],
+                ),
+                crossFadeState: mode == DatePickerMode.day
+                    ? CrossFadeState.showFirst
+                    : CrossFadeState.showSecond,
               ),
             ),
           ),
