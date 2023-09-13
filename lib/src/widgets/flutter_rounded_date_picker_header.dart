@@ -121,6 +121,7 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
+              color: backgroundColor,
             ),
             child: Padding(
               padding:
