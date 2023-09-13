@@ -108,29 +108,25 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
         break;
     }
 
-    final Widget yearButton = ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: InkWell(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        onTap: () {
-          _handleChangeMode();
-        },
-        child: Card(
-          elevation: 4,
-          child: Container(
-            color: backgroundColor,
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-              child: AnimatedCrossFade(
-                duration: const Duration(milliseconds: 200),
-                firstChild: SizedBox.shrink(),
-                // firstChild: Text(
-                //   "${calculateYearEra(era, selectedDate.year)}",
-                //   style: yearStyle,
-                // ),
-                secondChild: Row(
+    final Widget yearButton = AnimatedCrossFade(
+      duration: const Duration(milliseconds: 200),
+      firstChild: SizedBox.shrink(),
+      secondChild: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: InkWell(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          onTap: () {
+            _handleChangeMode();
+          },
+          child: Card(
+            elevation: 4,
+            child: Container(
+              color: backgroundColor,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -145,14 +141,14 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
                     ),
                   ],
                 ),
-                crossFadeState: mode == DatePickerMode.day
-                    ? CrossFadeState.showFirst
-                    : CrossFadeState.showSecond,
               ),
             ),
           ),
         ),
       ),
+      crossFadeState: mode == DatePickerMode.day
+          ? CrossFadeState.showFirst
+          : CrossFadeState.showSecond,
     );
     // IgnorePointer(
     //   ignoring: mode != DatePickerMode.day,
