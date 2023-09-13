@@ -378,7 +378,10 @@ class _FlutterRoundedDatePickerDialogState
                         height: widget.height,
                         child: picker,
                       ),
-                    actions,
+                    Visibility(
+                      visible: _mode == DatePickerMode.day,
+                      child: actions,
+                    ),
                   ],
                 ),
               ),
