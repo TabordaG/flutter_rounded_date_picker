@@ -3,6 +3,7 @@ import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:flutter_rounded_date_picker/src/flutter_rounded_button_action.dart';
+import 'package:flutter_rounded_date_picker/src/widgets/flutter_rounded_date_picker_header.dart';
 import 'package:flutter_rounded_date_picker/src/widgets/flutter_rounded_day_picker.dart';
 import 'package:flutter_rounded_date_picker/src/widgets/flutter_rounded_month_picker.dart';
 import 'package:flutter_rounded_date_picker/src/widgets/flutter_rounded_year_picker.dart';
@@ -138,23 +139,23 @@ class _FlutterRoundedDatePickerDialogState
     }
   }
 
-  // void _handleModeChanged(DatePickerMode mode) {
-  //   _vibrate();
-  //   setState(() {
-  //     _mode = mode;
-  //     if (_mode == DatePickerMode.day) {
-  //       SemanticsService.announce(
-  //         localizations.formatMonthYear(_selectedDate),
-  //         textDirection,
-  //       );
-  //     } else {
-  //       SemanticsService.announce(
-  //         localizations.formatYear(_selectedDate),
-  //         textDirection,
-  //       );
-  //     }
-  //   });
-  // }
+  void _handleModeChanged(DatePickerMode mode) {
+    _vibrate();
+    setState(() {
+      _mode = mode;
+      if (_mode == DatePickerMode.day) {
+        SemanticsService.announce(
+          localizations.formatMonthYear(_selectedDate),
+          textDirection,
+        );
+      } else {
+        SemanticsService.announce(
+          localizations.formatYear(_selectedDate),
+          textDirection,
+        );
+      }
+    });
+  }
 
   Future<void> _handleYearChanged(DateTime value) async {
     if (value.isBefore(widget.firstDate)) {
@@ -256,17 +257,17 @@ class _FlutterRoundedDatePickerDialogState
     final Dialog dialog = Dialog(
       child: OrientationBuilder(
           builder: (BuildContext context, Orientation orientation) {
-        // final Widget header = FlutterRoundedDatePickerHeader(
-        //     selectedDate: _selectedDate,
-        //     mode: _mode,
-        //     onModeChanged: _handleModeChanged,
-        //     orientation: orientation,
-        //     era: widget.era,
-        //     borderRadius: widget.borderRadius,
-        //     imageHeader: widget.imageHeader,
-        //     description: widget.description,
-        //     fontFamily: widget.fontFamily,
-        //     style: widget.styleDatePicker);
+        final Widget header = FlutterRoundedDatePickerHeader(
+            selectedDate: _selectedDate,
+            mode: _mode,
+            onModeChanged: _handleModeChanged,
+            orientation: orientation,
+            era: widget.era,
+            borderRadius: widget.borderRadius,
+            imageHeader: widget.imageHeader,
+            description: widget.description,
+            fontFamily: widget.fontFamily,
+            style: widget.styleDatePicker);
         switch (orientation) {
           case Orientation.landscape:
             return Container(
@@ -330,7 +331,7 @@ class _FlutterRoundedDatePickerDialogState
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    // header,
+                    header,
                     Container(
                       height: 16,
                       decoration: BoxDecoration(

@@ -162,9 +162,6 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        image: imageHeader != null
-            ? DecorationImage(image: imageHeader!, fit: BoxFit.cover)
-            : null,
         color: backgroundColor,
         borderRadius: borderRadiusData,
       ),
@@ -174,22 +171,22 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           yearButton,
-          dayButton,
-          const SizedBox(height: 4.0),
-          Visibility(
-            visible: description.isNotEmpty,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: Text(
-                description,
-                style: TextStyle(
-                  color: yearColor,
-                  fontSize: 12,
-                  fontFamily: fontFamily,
-                ),
-              ),
-            ),
-          )
+          // dayButton,
+          // const SizedBox(height: 4.0),
+          // Visibility(
+          //   visible: description.isNotEmpty,
+          //   child: Padding(
+          //     padding: EdgeInsets.symmetric(horizontal: 12),
+          //     child: Text(
+          //       description,
+          //       style: TextStyle(
+          //         color: yearColor,
+          //         fontSize: 12,
+          //         fontFamily: fontFamily,
+          //       ),
+          //     ),
+          //   ),
+          // )
         ],
       ),
     );
