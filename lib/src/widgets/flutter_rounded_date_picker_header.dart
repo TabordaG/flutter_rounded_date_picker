@@ -38,8 +38,9 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
   /// Font
   final String? fontFamily;
 
-  void _handleChangeMode(DatePickerMode value) {
-    if (value != mode) onModeChanged(value);
+  void _handleChangeMode() {
+    onModeChanged(
+        mode == DatePickerMode.day ? DatePickerMode.year : DatePickerMode.day);
   }
 
   @override
@@ -113,7 +114,7 @@ class FlutterRoundedDatePickerHeader extends StatelessWidget {
       child: _DateHeaderButton(
         color: Colors.transparent,
         onTap: () {
-          _handleChangeMode(DatePickerMode.year);
+          _handleChangeMode();
           // Feedback.wrapForTap(
           //   () => _handleChangeMode(DatePickerMode.year),
           //   context,

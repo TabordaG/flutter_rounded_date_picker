@@ -331,7 +331,6 @@ class _FlutterRoundedDatePickerDialogState
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    header,
                     Container(
                       height: 16,
                       decoration: BoxDecoration(
@@ -357,6 +356,7 @@ class _FlutterRoundedDatePickerDialogState
                         ),
                       ),
                     ),
+                    header,
                     Visibility(
                       visible: (widget.title ?? '').isNotEmpty,
                       child: Padding(
